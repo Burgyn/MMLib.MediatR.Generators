@@ -1,0 +1,1 @@
+# MMLib.MediatR.Generators
