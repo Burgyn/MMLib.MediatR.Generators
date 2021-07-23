@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators", "src\MMLib.MediatR.Generators.csproj", "{70404BC9-B6F6-4A1B-AB8B-E20C8DAAF12D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators.IntegrationTests", "tests\MMLib.MediatR.Generators.IntegrationTests.csproj", "{B8EB7817-A537-403C-B0D4-A32244EDD003}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators.Tests", "tests\MMLib.MediatR.Generators.Tests.csproj", "{B8EB7817-A537-403C-B0D4-A32244EDD003}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators.Demo", "demo\MMLib.MediatR.Generators.Demo.csproj", "{93A2B7B7-3E8A-4868-84A1-688294E9E811}"
 EndProject
