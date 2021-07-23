@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoBogus.Conventions" Version="2.13.0" />
+    <PackageReference Include="Kros.Utils" Version="1.18.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\MMLib.MediatR.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\" />
+  </ItemGroup>
+
+  <Import Project="..\src\MMLib.MediatR.Generators.props" />
+</Project>

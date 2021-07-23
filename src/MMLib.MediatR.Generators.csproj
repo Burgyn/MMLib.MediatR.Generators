@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <BuildOutputTargetFolder>analyzers</BuildOutputTargetFolder>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\ControllerTemplate.txt" />
+    <None Remove="Controllers\Templates\Attributes.txt" />
+    <None Remove="Controllers\Templates\Body.txt" />
+    <None Remove="Controllers\UsingTemplate.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Controllers\Templates\Attributes.txt" />
+    <EmbeddedResource Include="Controllers\Templates\Body.txt" />
+    <EmbeddedResource Include="Controllers\Templates\Usings.txt" />
+    <EmbeddedResource Include="Controllers\Templates\Controller.txt" />
+    <EmbeddedResource Include="Controllers\SourceTypes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.10.0-3.final" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageReference Include="Scriban" Version="4.0.1" IncludeAssets="Build" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PackageScribanIncludeSource>true</PackageScribanIncludeSource>
+  </PropertyGroup>
+</Project>

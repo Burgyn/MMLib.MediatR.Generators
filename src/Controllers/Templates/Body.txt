@@ -1,0 +1,6 @@
+﻿{{- for method in Methods }}
+	[Http{{ method.HttpMethod }}]
+	public {{ method.ResponseType }} {{ method.Name }}()
+	{
+	}
+{{ end }}

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MMLib.MediatR.Generators": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\demo\\MMLib.MediatR.Generators.Demo.csproj"
+    }
+  }
+}
