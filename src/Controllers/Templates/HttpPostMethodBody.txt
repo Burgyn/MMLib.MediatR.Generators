@@ -1,0 +1,3 @@
+﻿{
+    return await SendCreateCommand({{ parameters | get_parameter request_type }}, nameof({{ name }}));
+}

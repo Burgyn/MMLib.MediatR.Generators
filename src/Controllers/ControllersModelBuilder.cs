@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MMLib.MediatR.Generators.Controllers
 {
-    internal partial class ControllerModel
+    internal partial record ControllerModel
     {
         internal static ControllersModelBuilder Builder(GeneratorExecutionContext context)
             => new(context.Compilation, context);

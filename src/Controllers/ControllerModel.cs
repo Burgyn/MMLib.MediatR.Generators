@@ -2,12 +2,12 @@
 
 namespace MMLib.MediatR.Generators.Controllers
 {
-    internal partial class ControllerModel
+    internal partial record ControllerModel
     {
-        public string Namespace { get; private set; }
+        public string Namespace { get; init; }
 
-        public string Name { get; private set; }
+        public string Name { get; init; }
 
-        public IEnumerable<MethodModel> Methods { get; private set; }
+        public IEnumerable<MethodModel> Methods { get; init; }
     }
 }

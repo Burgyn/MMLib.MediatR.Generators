@@ -13,7 +13,7 @@ namespace MMLib.MediatR.Generators.Controllers
             _templates[GetName(type, controllerName)] = template;
         }
 
-        public string GetTemplate(TemplateType type, string controllerName)
+        public string GetControllerTemplate(TemplateType type, string controllerName)
             => _templates.ContainsKey(GetName(type, controllerName))
                 ? _templates[GetName(type, controllerName)]
                 : _templates.ContainsKey(GetName(type, string.Empty))
@@ -27,7 +27,17 @@ namespace MMLib.MediatR.Generators.Controllers
                         _ => throw new ArgumentOutOfRangeException(nameof(type), $"Unexpected template type: {type}.")
                     };
 
+        public string GetMethodBodyTemplate(string controllerName, string httpType, string methodName)
+            => _templates.ContainsKey(GetMethodBodyTemplateName(controllerName, httpType, methodName))
+                ? _templates[GetMethodBodyTemplateName(controllerName, httpType, methodName)]
+                : _templates.ContainsKey(GetMethodBodyTemplateName(string.Empty, httpType, string.Empty))
+                    ? _templates[GetMethodBodyTemplateName(string.Empty, httpType, string.Empty)]
+                    : EmbeddedResource.GetContent($"Controllers.Templates.Http{httpType}MethodBody.txt");
+
         private static string GetName(TemplateType type, string controllerName)
             => $"{type}-{controllerName}";
+
+        private static string GetMethodBodyTemplateName(string controllerName, string httpType, string methodName)
+            => $"{controllerName}-{httpType}-{methodName}";
     }
 }

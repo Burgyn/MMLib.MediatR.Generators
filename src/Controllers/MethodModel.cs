@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace MMLib.MediatR.Generators.Controllers
 {
-    internal partial class MethodModel
+    internal partial record MethodModel
     {
-        public string Name { get; private set; }
+        public string Name { get; init; }
 
-        public string Template { get; private set; }
+        public string Template { get; init; }
 
-        public string HttpMethod { get; private set; }
+        public string HttpMethod { get; init; }
 
-        public string MethodSignatureTemplate { get; private set; }
+        public string ResponseType { get; init; }
 
-        public string MethodBodyTemplate { get; private set; }
+        public string Comment { get; init; }
 
-        public string ResponseType { get; private set; }
+        public IEnumerable<ParameterModel> Parameters { get; init; }
 
-        public IEnumerable<ParameterModel> Parameters { get; set; }
+        public string RequestType { get; init; }
 
-        public IEnumerable<string> Attributes { get; set; }
+        public List<string> RequestProperties { get; init; } = new();
     }
 }

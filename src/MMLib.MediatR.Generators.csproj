@@ -11,10 +11,18 @@
     <None Remove="Controllers\ControllerTemplate.txt" />
     <None Remove="Controllers\Templates\Attributes.txt" />
     <None Remove="Controllers\Templates\Body.txt" />
+    <None Remove="Controllers\Templates\HttpDeleteMethodBody.txt" />
+    <None Remove="Controllers\Templates\HttpGetMethodBody.txt" />
+    <None Remove="Controllers\Templates\HttpPostMethodBody.txt" />
+    <None Remove="Controllers\Templates\HttpPutMethodBody.txt" />
     <None Remove="Controllers\UsingTemplate.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Controllers\Templates\HttpDeleteMethodBody.txt" />
+    <EmbeddedResource Include="Controllers\Templates\HttpPostMethodBody.txt" />
+    <EmbeddedResource Include="Controllers\Templates\HttpPutMethodBody.txt" />
+    <EmbeddedResource Include="Controllers\Templates\HttpGetMethodBody.txt" />
     <EmbeddedResource Include="Controllers\Templates\Attributes.txt" />
     <EmbeddedResource Include="Controllers\Templates\Body.txt" />
     <EmbeddedResource Include="Controllers\Templates\Usings.txt" />

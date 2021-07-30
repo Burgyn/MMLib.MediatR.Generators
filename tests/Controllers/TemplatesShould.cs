@@ -23,7 +23,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
             var templates = new Templates();
             templates.AddTemplate(type, controller, template);
 
-            string actual = templates.GetTemplate(type, controller);
+            string actual = templates.GetControllerTemplate(type, controller);
 
             actual.Should().Be(template);
         }
@@ -37,7 +37,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         {
             var templates = new Templates();
 
-            string actual = templates.GetTemplate(type, "NonExisting");
+            string actual = templates.GetControllerTemplate(type, "NonExisting");
 
             return Verifier.Verify(actual)
                 .UseParameters(type);

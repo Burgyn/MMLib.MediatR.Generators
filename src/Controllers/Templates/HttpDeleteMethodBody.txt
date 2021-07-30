@@ -1,0 +1,4 @@
+﻿{
+    await _mediator.Send({{ parameters | get_parameter request_type }});
+	return NoContent();	
+}
