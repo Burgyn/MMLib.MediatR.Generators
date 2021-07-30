@@ -23,7 +23,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
             var templates = new Templates();
             templates.AddTemplate(type, controller, template);
 
-            string actual = templates.GetControllerTemplate(type, controller);
+            var actual = templates.GetControllerTemplate(type, controller);
 
             actual.Should().Be(template);
         }
@@ -33,7 +33,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         [InlineData(TemplateType.ControllerAttributes)]
         [InlineData(TemplateType.ControllerBody)]
         [InlineData(TemplateType.ControllerUsings)]
-        public Task ShouldGetDefaultTemplateIfDoesnotExist(TemplateType type)
+        public Task ShouldGetDefaultTemplateIfDoesNotExist(TemplateType type)
         {
             var templates = new Templates();
 
@@ -41,6 +41,36 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
 
             return Verifier.Verify(actual)
                 .UseParameters(type);
+        }
+        
+        [Theory]
+        [InlineData("People", "Get", "GetAll", "Get all template.")]
+        [InlineData("", "Get", "", "Default Get method body.")]
+        [InlineData("People", "Post", "GetAll", "Post template.")]
+        [InlineData("", "Post", "", "Default Post method body.")]
+        public void ShouldGetMethodBodyTemplate(string controller, string httpType, string methodName, string template)
+        {
+            var templates = new Templates();
+            templates.AddMethodBodyTemplate(controller, httpType, methodName, template);
+
+            var actual = templates.GetMethodBodyTemplate(controller, httpType, methodName);
+
+            actual.Should().Be(template);
+        }
+        
+        [Theory]
+        [InlineData("Get")]
+        [InlineData("Post")]
+        [InlineData("Put")]
+        [InlineData("Delete")]
+        public Task ShouldGetDefaultMethodBodyTemplateIfDoesNotExist(string httpType)
+        {
+            var templates = new Templates();
+
+            var actual = templates.GetMethodBodyTemplate("controller", httpType , "NonExisting");
+
+            return Verifier.Verify(actual)
+                .UseParameters(httpType);
         }
     }
 }

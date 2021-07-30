@@ -12,6 +12,11 @@ namespace MMLib.MediatR.Generators.Controllers
         {
             _templates[GetName(type, controllerName)] = template;
         }
+        
+        public void AddMethodBodyTemplate(string controllerName, string httpType, string methodName, string template)
+        {
+            _templates[GetMethodBodyTemplateName(controllerName, httpType, methodName)] = template;
+        }
 
         public string GetControllerTemplate(TemplateType type, string controllerName)
             => _templates.ContainsKey(GetName(type, controllerName))

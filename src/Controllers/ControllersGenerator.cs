@@ -5,6 +5,7 @@ using MMLib.MediatR.Generators.Helpers;
 using System;
 using System.IO;
 using System.Text;
+using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace MMLib.MediatR.Generators.Controllers
 {
@@ -37,30 +38,39 @@ namespace MMLib.MediatR.Generators.Controllers
             }
         }
 
-        static Templates LoadTemplates(GeneratorExecutionContext context)
+        private static Templates LoadTemplates(GeneratorExecutionContext context)
         {
             Templates templates = new();
 
-            foreach (AdditionalText file in context.AdditionalFiles)
+            foreach (var file in context.AdditionalFiles)
             {
                 if (Path.GetExtension(file.Path).Equals(".txt", StringComparison.OrdinalIgnoreCase))
                 {
                     var options = context.AnalyzerConfigOptions.GetOptions(file);
-                    if (options.TryGetValue("build_metadata.additionalfiles.TemplateType", out string type) &&
+                    if (options.TryGetValue("build_metadata.additionalfiles.TemplateType", out var type) &&
                         Enum.TryParse(type, ignoreCase: true, out TemplateType templateType))
                     {
-                        string controllerName = string.Empty;
-                        if (options.TryGetValue("build_metadata.additionalfiles.ControllerName", out string name))
-                        {
-                            controllerName = name;
-                        }
+                        var controllerName = TryGetValue(options, "ControllerName");
+                        var template  = file.GetText(context.CancellationToken).ToString();
 
-                        templates.AddTemplate(templateType, controllerName, file.GetText(context.CancellationToken).ToString());
+                        if (templateType != TemplateType.MethodBody)
+                        {
+                            templates.AddTemplate(templateType, controllerName, template);
+                        }
+                        else
+                        {
+                            var methodType = TryGetValue(options, "MethodType");
+                            var methodName = TryGetValue(options, "MethodName");
+                            templates.AddMethodBodyTemplate(controllerName, methodType, methodName, template);
+                        }
                     }
                 }
             }
 
             return templates;
         }
+
+        private static string TryGetValue(AnalyzerConfigOptions options, string type)
+            => options.TryGetValue($"build_metadata.additionalfiles.{type}", out var value) ? value : string.Empty;
     }
 }

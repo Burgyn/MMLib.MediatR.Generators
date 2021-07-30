@@ -3,5 +3,7 @@
   <ItemGroup>
     <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="TemplateType" />
     <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ControllerName" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="MethodType" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="MethodName" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
         Controller,
         ControllerUsings,
         ControllerAttributes,
-        ControllerBody
+        ControllerBody,
+        MethodBody
     }
 }
