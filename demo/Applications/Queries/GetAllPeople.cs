@@ -11,12 +11,10 @@ namespace MMLib.MediatR.Generators.Demo.Applications.Queries
 {
     public class GetAllPeople
     {
-        [HttpGet(Controller = "People")]
-        [IgnoreAsParameter]
+        [HttpGet("all", Controller = "People", From = From.Ignore)]
         public record Query() : IRequest<IEnumerable<Response>>;
 
-        [HttpGet(Controller = "People", Name = "GetPeople")]
-        [FromQuery]
+        [HttpGet(Controller = "People", Name = "GetPeople", From = From.Query)]
         public record QueryPager(int Skip, int Take) : IRequest<IEnumerable<Response>>;
 
         public record Handler :

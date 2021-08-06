@@ -10,7 +10,6 @@ namespace MMLib.MediatR.Generators.Demo.Applications.Queries
     public class GetPersonById
     {
         [HttpGet("{id}", Controller = "People", Name = "GetById")]
-        [FromRoute]
         public record Query(int Id) : IRequest<Response>;
 
         public class Handler : IRequestHandler<Query, Response>

@@ -13,12 +13,12 @@ namespace MMLib.MediatR.Generators.Controllers
                 .RenderBody(method, templates.GetMethodBodyTemplate(controllerName, method.HttpMethod, method.Name));
 
         public static string GetParameter(IEnumerable<ParameterModel> parameters, string requestType)
-            => parameters is not null
+            => parameters?.Any() == true
                 ? GetRequerstParameter(parameters, requestType)
                 : $"new {requestType}()";
 
         private static string GetRequerstParameter(IEnumerable<ParameterModel> parameters, string requestType)
-            => parameters?.FirstOrDefault(p 
+            => parameters?.FirstOrDefault(p
                 => p.Type.Equals(requestType, StringComparison.CurrentCultureIgnoreCase))?.Name;
 
         public static string PostInitiate(

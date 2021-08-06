@@ -51,7 +51,7 @@ namespace MMLib.MediatR.Generators.Helpers
         private static Func<AttributeListSyntax, IEnumerable<AttributeSyntax>> SelectWithAttributes(ISet<string> attributes)
             => l => l?.Attributes.Where(a => attributes.Contains((a.Name as IdentifierNameSyntax)?.Identifier.Text));
 
-        public static string GetClassName(this TypeDeclarationSyntax typeDeclaration)
+        public static string GetTypeName(this TypeDeclarationSyntax typeDeclaration)
             => typeDeclaration.Identifier.Text;
 
         public static string GetClassModifier(this TypeDeclarationSyntax typeDeclaration)
@@ -68,14 +68,23 @@ namespace MMLib.MediatR.Generators.Helpers
                .Arguments
                .Any(p => p.NameEquals.Name.Identifier.ValueText == argumentName);
 
+        public static string GetFirstArgumentWithoutName(this AttributeSyntax attribute)
+        {
+            var value  = attribute
+                .ArgumentList
+                .Arguments
+                .FirstOrDefault(p => p.NameEquals is null)?.Expression as LiteralExpressionSyntax;
+
+            return value?.Token.ValueText;
+        }
+
         public static string GetStringArgument(
             this AttributeSyntax attribute,
-            string argumentName,
-            SemanticModel semanticModel)
+            string argumentName)
         {
             var value = attribute.GetArgument<LiteralExpressionSyntax>(argumentName);
 
-            return value.Token.ValueText;
+            return value?.Token.ValueText;
         }
 
         public static HashSet<string> GetArrayArguments(
@@ -114,7 +123,7 @@ namespace MMLib.MediatR.Generators.Helpers
             return value.HasValue ? value.Value.ToString() : null;
         }
 
-        private static T GetArgument<T>(this AttributeSyntax attribute, string argumentName)
+        public static T GetArgument<T>(this AttributeSyntax attribute, string argumentName)
             where T : ExpressionSyntax
             => attribute
                 .ArgumentList
@@ -128,6 +137,24 @@ namespace MMLib.MediatR.Generators.Helpers
             {
                 yield return current;
                 current = current.BaseType;
+            }
+        }
+
+        public static INamedTypeSymbol GetTypeArgument(
+            this AttributeSyntax attribute,
+            string argumentName,
+            SemanticModel semanticModel)
+        {
+            TypeSyntax typeOfExpression = attribute.GetArgument<TypeOfExpressionSyntax>(argumentName)?.Type;
+            if (typeOfExpression is not null)
+            {
+                TypeInfo typeInfo = semanticModel.GetTypeInfo(typeOfExpression);
+
+                return ((INamedTypeSymbol)typeInfo.Type);
+            }
+            else
+            {
+                return null;
             }
         }
     }

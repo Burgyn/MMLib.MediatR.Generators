@@ -20,7 +20,8 @@ namespace MMLib.MediatR.Generators.Controllers
             var ret = new ControllerModel()
             {
                 Name = name,
-                Namespace = $"{compilation.AssemblyName}.Controllers"
+                Namespace = $"{compilation.AssemblyName}.Controllers",
+                Methods = methods.Select(MethodModel.Build)
             };
 
             return ret;
@@ -40,25 +41,24 @@ namespace MMLib.MediatR.Generators.Controllers
                 _context = context;
             }
 
-            public void AddCandidate(ClassDeclarationSyntax candidate)
+            public void AddCandidate(TypeDeclarationSyntax candidate)
             {
-                AttributeSyntax attribute = candidate.GetAttribute(HttpMethods.Attributes);
-                SemanticModel semanticModel = _compilation.GetSemanticModel(candidate.SyntaxTree);
-                string controllerName = attribute
-                    .GetStringArgument(nameof(HttpGetAttribute.Controller), semanticModel)
+                var attribute = candidate.GetAttribute(HttpMethods.Attributes);
+                var semanticModel = _compilation.GetSemanticModel(candidate.SyntaxTree);
+                var controllerName = attribute
+                    .GetStringArgument(nameof(HttpMethodAttribute.Controller))
                     .CheckControllerName();
 
                 if (!_controllers.ContainsKey(controllerName))
                 {
                     _controllers.Add(controllerName, new List<MethodCandidate>());
                 }
-                _controllers[controllerName].Add(new(attribute, semanticModel));
+                var requestType = semanticModel.GetDeclaredSymbol(candidate);
+                _controllers[controllerName].Add(new(attribute, semanticModel, candidate, requestType.ToDisplayString()));
             }
 
             public IEnumerable<ControllerModel> Build()
                 => _controllers.Select(p => ControllerModel.Build(p.Key, p.Value, _compilation, _context));
         }
-
-        public record MethodCandidate(AttributeSyntax HttpMethodAttribute, SemanticModel SemanticModel);
     }
 }

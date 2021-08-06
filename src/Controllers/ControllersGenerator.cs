@@ -25,7 +25,7 @@ namespace MMLib.MediatR.Generators.Controllers
             if (context.SyntaxReceiver is ControllerReceiver actorSyntaxReciver)
             {
                 var builder = ControllerModel.Builder(context);
-                foreach (ClassDeclarationSyntax candidate in actorSyntaxReciver.Candidates)
+                foreach (TypeDeclarationSyntax candidate in actorSyntaxReciver.Candidates)
                 {
                     builder.AddCandidate(candidate);
                 }

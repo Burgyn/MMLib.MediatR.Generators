@@ -27,7 +27,7 @@ namespace {{ controller.namespace }}
             IRequest<TResponse> command,
             string actionName = null)
         {
-            var ret = new { id = await _mediator.Send(command); };
+            var ret = new { id = await _mediator.Send(command) };
             string url = actionName != null
                 ? Url.Link(actionName, ret) ?? string.Empty
                 : string.Empty;

@@ -5,7 +5,14 @@ namespace MMLib.MediatR.Generators.Controllers
 {
     internal static class HttpMethods
     {
-        public static ISet<string> Attributes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-            { "HttpGet", "HttpPost", "HttpPut", "HttpDelete" };
+        public const string Get = "Get";
+        public const string Post = "Post";
+        public const string Put = "Put";
+        public const string Delete = "Delete";
+
+        public static ISet<string> Attributes = new HashSet<string>(StringComparer.OrdinalIgnoreCase){
+            HttpMethod(Get), HttpMethod(Post), HttpMethod(Put), HttpMethod(Delete) };
+
+        private static string HttpMethod(string type) => $"Http{type}";
     }
 }

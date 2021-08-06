@@ -1,11 +1,11 @@
 using AutoBogus;
 using AutoBogus.Conventions;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Microsoft.OpenApi.Models;
 
 namespace MMLib.MediatR.Generators.Demo
@@ -28,6 +28,13 @@ namespace MMLib.MediatR.Generators.Demo
             });
 
             services.AddControllers();
+            services.AddMediatR(typeof(Startup));
+
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(x => x.FullName);
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MMLib.MediatR.Generators.Demo", Version = "v1" });

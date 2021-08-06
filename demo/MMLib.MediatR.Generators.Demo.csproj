@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -10,7 +10,8 @@
     <PackageReference Include="AutoBogus.Conventions" Version="2.13.0" />
     <PackageReference Include="Kros.Utils" Version="1.18.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
-    <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />-->
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
   </ItemGroup>
 
   <ItemGroup>
