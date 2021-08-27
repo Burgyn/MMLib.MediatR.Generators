@@ -18,6 +18,8 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         [InlineData("", TemplateType.ControllerBody, "Default template for all controllers body.")]
         [InlineData("Users", TemplateType.ControllerUsings, "Template for people controller usings.")]
         [InlineData("", TemplateType.ControllerUsings, "Default template for all controllers usings.")]
+        [InlineData("Users", TemplateType.MethodAttributes, "[Attribute1],[Attribute2]")]
+        [InlineData("", TemplateType.MethodAttributes, "[Attribute3],[Attribute4]")]
         public void ShouldGetTemplateByControllerName(string controller, TemplateType type, string template)
         {
             var templates = new Templates();
@@ -33,6 +35,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         [InlineData(TemplateType.ControllerAttributes)]
         [InlineData(TemplateType.ControllerBody)]
         [InlineData(TemplateType.ControllerUsings)]
+        [InlineData(TemplateType.MethodAttributes)]
         public Task ShouldGetDefaultTemplateIfDoesNotExist(TemplateType type)
         {
             var templates = new Templates();

@@ -31,7 +31,7 @@ namespace MMLib.MediatR.Generators.Controllers
                 }
 
                 var templates = LoadTemplates(context);
-                foreach (var controller in builder.Build())
+                foreach (var controller in builder.Build(templates))
                 {
                     context.AddSource($"{controller.Name}", SourceCodeGenerator.Generate(controller, templates));
                 }

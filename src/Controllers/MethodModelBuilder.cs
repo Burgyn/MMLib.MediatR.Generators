@@ -12,8 +12,9 @@ namespace MMLib.MediatR.Generators.Controllers
     internal partial record MethodModel
     {
         private static readonly string _additionalParametersAttributeName = Helper.GetAttributeName<AdditionalParametersAttribute>();
+        private const string _requestMethodDefinitionName = "RequestMethodDefinition";
 
-        public static MethodModel Build(MethodCandidate candidate)
+        public static MethodModel Build(MethodCandidate candidate, Templates templates, string controllerName)
         {
             string httpType = GetMethodType(candidate);
             string name = GetMethodName(candidate);
@@ -27,12 +28,26 @@ namespace MMLib.MediatR.Generators.Controllers
                 Template = template,
                 RequestType = candidate.RequestType,
                 ResponseType = GetResponseType(candidate, httpType),
+                Attributes = GetAttributes(templates, controllerName, candidate.TypeDeclaration),
                 Comment = GetComment(typeSymbol)
             };
 
             method.InitParameters(candidate, httpType, typeSymbol);
 
             return method;
+        }
+
+        private static string GetAttributes(Templates templates, string controllerName, TypeDeclarationSyntax typeDeclaration)
+        {
+            var requestMethod = typeDeclaration.GetMethodSymbol(_requestMethodDefinitionName);
+            if (requestMethod is not null)
+            {
+                var attributes = requestMethod.AttributeLists.SelectMany(a => a.Attributes);
+                var names = string.Join(Environment.NewLine, attributes.Select(b => $"[{b.Name}({b.ArgumentList?.Arguments})]"));
+                return names;
+            }
+
+            return templates.GetControllerTemplate(TemplateType.MethodAttributes, controllerName);
         }
 
         private static string GetComment(INamedTypeSymbol typeSymbol)

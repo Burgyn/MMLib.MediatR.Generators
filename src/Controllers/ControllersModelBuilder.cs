@@ -15,13 +15,13 @@ namespace MMLib.MediatR.Generators.Controllers
         private static ControllerModel Build(string name,
             IEnumerable<MethodCandidate> methods,
             Compilation compilation,
-            GeneratorExecutionContext context)
+            Templates templates)
         {
             var ret = new ControllerModel()
             {
                 Name = name,
                 Namespace = $"{compilation.AssemblyName}.Controllers",
-                Methods = methods.Select(MethodModel.Build)
+                Methods = methods.Select(m => MethodModel.Build(m, templates, name))
             };
 
             return ret;
@@ -57,8 +57,8 @@ namespace MMLib.MediatR.Generators.Controllers
                 _controllers[controllerName].Add(new(attribute, semanticModel, candidate, requestType.ToDisplayString()));
             }
 
-            public IEnumerable<ControllerModel> Build()
-                => _controllers.Select(p => ControllerModel.Build(p.Key, p.Value, _compilation, _context));
+            public IEnumerable<ControllerModel> Build(Templates templates)
+                => _controllers.Select(p => ControllerModel.Build(p.Key, p.Value, _compilation, templates));
         }
     }
 }

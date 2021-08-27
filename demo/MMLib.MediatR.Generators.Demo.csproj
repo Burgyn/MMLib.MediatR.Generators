@@ -15,6 +15,7 @@
     <PackageReference Include="Kros.Utils" Version="1.18.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="5.0.9" />
     <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />-->
   </ItemGroup>
 
@@ -22,9 +23,8 @@
     <ProjectReference Include="..\src\MMLib.MediatR.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Templates\" />
-  </ItemGroup>
-
   <Import Project="..\src\MMLib.MediatR.Generators.props" />
+  <ItemGroup>
+    <AdditionalFiles Include="Templates\MethodAttributes.txt" TemplateType="MethodAttributes" ControllerName="ProductsController" />
+  </ItemGroup>
 </Project>

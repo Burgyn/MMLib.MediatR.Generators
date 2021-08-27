@@ -33,14 +33,14 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
                     HttpMethod = "Get", Name = "GetAll", ResponseType = "IEnumerable<Person>",
                     Comment = "Get all person.",
                     RequestType = "GetAllPeopleQuery",
-                    Attributes = new string[]{ "AllowAnonymous" }
+                    Attributes = "[AllowAnonymous]"
                 },
                 new()
                 {
                     HttpMethod = "Get", Template = "{id:int}", Name = "GetById", ResponseType = "Person",
                     Parameters = new List<ParameterModel>() {new("query", "GetPersonById", "[FromRoute]")},
                     RequestType = "GetPersonById",
-                    Attributes = new string[]{ "AllowAnonymous", "ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetAllTagsQuery.Tag>))" }
+                    Attributes = "[AllowAnonymous]\n\r[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetAllTagsQuery.Tag>))]"
                 },
                 new()
                 {

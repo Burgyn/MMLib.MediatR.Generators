@@ -70,7 +70,7 @@ namespace MMLib.MediatR.Generators.Helpers
 
         public static string GetFirstArgumentWithoutName(this AttributeSyntax attribute)
         {
-            var value  = attribute
+            var value = attribute
                 .ArgumentList
                 .Arguments
                 .FirstOrDefault(p => p.NameEquals is null)?.Expression as LiteralExpressionSyntax;
@@ -95,6 +95,12 @@ namespace MMLib.MediatR.Generators.Helpers
                 .Where(x => x.Kind == SymbolKind.Property)
                 .OfType<IPropertySymbol>()
                 .ToDictionary(p => p.Name, p => p.Type, StringComparer.OrdinalIgnoreCase);
+
+        public static MethodDeclarationSyntax GetMethodSymbol(this TypeDeclarationSyntax typeDeclaration, string name)
+            => typeDeclaration
+                .DescendantNodes()
+                .OfType<MethodDeclarationSyntax>()
+                .FirstOrDefault(m => m.Identifier.ValueText == name);
 
         public static HashSet<string> GetArrayArguments(
             this AttributeSyntax attribute,
