@@ -15,7 +15,7 @@ namespace MMLib.MediatR.Generators.Controllers
 
         public string Comment { get; init; }
 
-        public IEnumerable<ParameterModel> Parameters { get; init; }
+        public List<ParameterModel> Parameters { get; init; } = new();
 
         public string RequestType { get; init; }
 

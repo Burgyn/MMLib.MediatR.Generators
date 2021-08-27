@@ -10,21 +10,26 @@ namespace MMLib.MediatR.Generators.Controllers
 {
     internal partial record MethodModel
     {
+        private static readonly string _additionalParametersAttributeName = Helper.GetAttributeName<AdditionalParametersAttribute>();
+
         public static MethodModel Build(MethodCandidate candidate)
         {
             string httpType = GetMethodType(candidate);
             string name = GetMethodName(candidate);
             string template = GetTemplate(candidate);
 
-            return new MethodModel()
+            var method = new MethodModel()
             {
                 HttpMethod = httpType,
                 Name = name,
                 Template = template,
-                Parameters = GetParameters(candidate, httpType),
                 RequestType = candidate.RequestType,
                 ResponseType = GetResponseType(candidate, httpType)
             };
+
+            method.InitParameters(candidate, httpType);
+
+            return method;
         }
 
         private static string GetTemplate(MethodCandidate candidate)
@@ -52,7 +57,7 @@ namespace MMLib.MediatR.Generators.Controllers
         private static string GetMethodType(MethodCandidate candidate)
             => candidate.HttpMethodAttribute.Name.ToString().Replace(Types.Http, string.Empty);
 
-        private static IEnumerable<ParameterModel> GetParameters(MethodCandidate candidate, string httpMethod)
+        private void InitParameters(MethodCandidate candidate, string httpMethod)
         {
             List<ParameterModel> parameters = new();
             var methodFromSource
@@ -77,7 +82,32 @@ namespace MMLib.MediatR.Generators.Controllers
                     AttributeFrom(methodFrom)));
             }
 
-            return parameters;
+            InitAditionalParams(candidate, parameters);
+
+            Parameters.AddRange(parameters);
+        }
+
+        private void InitAditionalParams(MethodCandidate candidate, List<ParameterModel> parameters)
+        {
+            var additionalParamsAttribute = candidate
+                .TypeDeclaration
+                .GetAttribute(_additionalParametersAttributeName);
+
+            if (additionalParamsAttribute is not null)
+            {
+                var typeSymbol = candidate.SemanticModel.GetDeclaredSymbol(candidate.TypeDeclaration) as INamedTypeSymbol;
+                var properties = typeSymbol.GetProperties();
+                RequestProperties.AddRange(properties.Keys);
+
+                foreach (var arg in additionalParamsAttribute.ArgumentList.Arguments)
+                {
+                    string name = (arg.Expression as LiteralExpressionSyntax).Token.ValueText;
+                    if (properties.ContainsKey(name))
+                    {
+                        parameters.Add(new ParameterModel(name, properties[name].Name, CanPostInitiateCommand: true));
+                    }
+                }
+            }
         }
 
         private static string GetParameterName(string httpMethod) => httpMethod == HttpMethods.Get ? "query" : "command";

@@ -87,6 +87,15 @@ namespace MMLib.MediatR.Generators.Helpers
             return value?.Token.ValueText;
         }
 
+        public static IEnumerable<ISymbol> GetAllMembers(this ITypeSymbol type)
+            => type.GetBaseTypesAndThis().SelectMany(n => n.GetMembers());
+
+        public static Dictionary<string, ITypeSymbol> GetProperties(this INamedTypeSymbol symbol)
+            => symbol.GetAllMembers()
+                .Where(x => x.Kind == SymbolKind.Property)
+                .OfType<IPropertySymbol>()
+                .ToDictionary(p => p.Name, p => p.Type, StringComparer.OrdinalIgnoreCase);
+
         public static HashSet<string> GetArrayArguments(
             this AttributeSyntax attribute,
             string argumentName,
