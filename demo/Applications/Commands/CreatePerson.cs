@@ -16,7 +16,7 @@ namespace MMLib.MediatR.Generators.Demo.Applications.Commands
         {
             [Microsoft.AspNetCore.Authorization.AllowAnonymous]
             [Microsoft.AspNetCore.Mvc.ValidateAntiForgeryToken]
-            [Microsoft.AspNetCore.Mvc.ProducesResponseType(StatusCodes.Status201Created, Type = typeof(int))]
+            [Microsoft.AspNetCore.Mvc.ProducesResponseType(Microsoft.AspNetCore.Http.StatusCodes.Status201Created, Type = typeof(int))]
             private void RequestMethodDefinition()
             {
                 throw new NotImplementedException();

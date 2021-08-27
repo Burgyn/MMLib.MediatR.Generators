@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MMLib.MediatR.Generators.Demo</name>
+    </assembly>
+    <members>
+        <member name="T:MMLib.MediatR.Generators.Demo.Applications.Commands.CreatePerson.Command">
+            <summary>
+            Testing comment.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Demo.Applications.Commands.CreatePerson.Command.#ctor(System.String,System.String)">
+            <summary>
+            Testing comment.
+            </summary>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Demo.Applications.Commands.DeleteProduct">
+            <summary>
+            Delete product.
+            </summary>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Demo.Applications.Commands.UpdatePerson.Command">
+            <summary>
+            Command for update person.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Demo.Applications.Commands.UpdatePerson.Command.#ctor">
+            <summary>
+            Command for update person.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Demo.Controllers.PeopleController.#ctor(MediatR.IMediator)">
+            <summary>
+            Ctor.
+            </summary>
+            <param name = "mediator">Mediator.</param>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Demo.Controllers.PeopleController.CreatePersonCommand(MMLib.MediatR.Generators.Demo.Applications.Commands.CreatePerson.Command)">
+            <summary>
+            Testing comment.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Demo.Controllers.PeopleController.UpdatePersonCommand(MMLib.MediatR.Generators.Demo.Applications.Commands.UpdatePerson.Command,System.Int32)">
+            <summary>
+            Command for update person.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Demo.Controllers.ProductsController.#ctor(MediatR.IMediator)">
+            <summary>
+            Ctor.
+            </summary>
+            <param name = "mediator">Mediator.</param>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Demo.Controllers.ProductsController.DeleteProduct(MMLib.MediatR.Generators.Demo.Applications.Commands.DeleteProduct)">
+            <summary>
+            Delete product.
+            </summary>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Controllers.From">
+            <summary>
+            Specifies where the parameter is taken from.
+            </summary>
+        </member>
+        <member name="F:MMLib.MediatR.Generators.Controllers.From.Ignore">
+            <summary>
+            The command / query will not be used as a parameter of the Http action.
+            </summary>
+        </member>
+        <member name="F:MMLib.MediatR.Generators.Controllers.From.Route">
+            <summary>
+            Specifies that a parameter should be bound using route-data from the current request.
+            </summary>
+        </member>
+        <member name="F:MMLib.MediatR.Generators.Controllers.From.Query">
+            <summary>
+            Specifies that a parameter should be bound using the request query string.
+            </summary>
+        </member>
+        <member name="F:MMLib.MediatR.Generators.Controllers.From.Body">
+            <summary>
+            Specifies that a parameter property should be bound using the request body.
+            </summary>
+        </member>
+        <member name="F:MMLib.MediatR.Generators.Controllers.From.Header">
+            <summary>
+            Specifies that a parameter should be bound using the request headers.
+            </summary>
+        </member>
+        <member name="F:MMLib.MediatR.Generators.Controllers.From.Form">
+            <summary>
+            Specifies that a parameter should be bound using form-data in the request body.
+            </summary>
+        </member>
+        <member name="F:MMLib.MediatR.Generators.Controllers.From.Services">
+            <summary>
+            Specifies that an parameter should be bound using the request services.
+            </summary>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute">
+            <summary>
+            Base Http mehtod attribute.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpGetAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpGetAttribute"/> class.
+            </summary>
+            <param name="template">The route template.</param>
+        </member>
+        <member name="P:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.Controller">
+            <summary>
+            Gets or sets the name of generated controller.
+            </summary>
+        </member>
+        <member name="P:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.Name">
+            <summary>
+            Http action name.
+            </summary>
+        </member>
+        <member name="P:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.Template">
+            <summary>
+            Gets or sets the route template.
+            </summary>
+        </member>
+        <member name="P:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.From">
+            <summary>
+            Specifies where the parameter is taken from.
+            </summary>
+        </member>
+        <member name="P:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.ResponseType">
+            <summary>
+            Gets or sets the type of the response.
+            </summary>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Controllers.HttpGetAttribute">
+            <summary>
+            Identifies the query from which the HTTP Get action method will be generated.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpGetAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpGetAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpGetAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpGetAttribute"/> class.
+            </summary>
+            <param name="template">The route template.</param>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Controllers.HttpPostAttribute">
+            <summary>
+            Identifies the command from which the HTTP Post action method will be generated.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpPostAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpPostAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpPostAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpPostAttribute"/> class.
+            </summary>
+            <param name="template">The route template. May not be null.</param>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Controllers.HttpPutAttribute">
+            <summary>
+            Identifies the command from which the HTTP Put action method will be generated.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpPutAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpPutAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpPutAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpPutAttribute"/> class.
+            </summary>
+            <param name="template">The route template. May not be null.</param>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Controllers.HttpDeleteAttribute">
+            <summary>
+            Identifies the command from which the HTTP Delete action method will be generated.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpDeleteAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpPutAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.HttpDeleteAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.HttpPutAttribute"/> class.
+            </summary>
+            <param name="template">The route template. May not be null.</param>
+        </member>
+        <member name="T:MMLib.MediatR.Generators.Controllers.AdditionalParametersAttribute">
+            <summary>
+            Additional parameters that are added as parameters of the http method and used to post initiate the command.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="M:MMLib.MediatR.Generators.Controllers.AdditionalParametersAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MMLib.MediatR.Generators.Controllers.AdditionalParametersAttribute"/> class.
+            </summary>
+            <param name="parameters">The parameters.</param>
+        </member>
+        <member name="P:MMLib.MediatR.Generators.Controllers.AdditionalParametersAttribute.Parameters">
+            <summary>
+            Gets the parameters.
+            </summary>
+        </member>
+    </members>
+</doc>

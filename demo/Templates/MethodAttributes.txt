@@ -1,1 +1,1 @@
-﻿[AllowAnonymous]
+﻿[Microsoft.AspNetCore.Authorization.AllowAnonymous]
