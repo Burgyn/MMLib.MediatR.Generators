@@ -8,6 +8,9 @@ namespace MMLib.MediatR.Generators.Demo.Applications.Commands
 {
     public class UpdatePerson
     {
+        /// <summary>
+        /// Command for update person.
+        /// </summary>
         [HttpPut("{id:int}", Controller = "People")]
         [AdditionalParameters("id")]
         public record Command() : IRequest<Unit>

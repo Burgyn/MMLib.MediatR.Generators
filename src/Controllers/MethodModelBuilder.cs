@@ -5,6 +5,7 @@ using MMLib.MediatR.Generators.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace MMLib.MediatR.Generators.Controllers
 {
@@ -17,6 +18,7 @@ namespace MMLib.MediatR.Generators.Controllers
             string httpType = GetMethodType(candidate);
             string name = GetMethodName(candidate);
             string template = GetTemplate(candidate);
+            INamedTypeSymbol typeSymbol = candidate.SemanticModel.GetDeclaredSymbol(candidate.TypeDeclaration);
 
             var method = new MethodModel()
             {
@@ -24,12 +26,23 @@ namespace MMLib.MediatR.Generators.Controllers
                 Name = name,
                 Template = template,
                 RequestType = candidate.RequestType,
-                ResponseType = GetResponseType(candidate, httpType)
+                ResponseType = GetResponseType(candidate, httpType),
+                Comment = GetComment(typeSymbol)
             };
 
-            method.InitParameters(candidate, httpType);
+            method.InitParameters(candidate, httpType, typeSymbol);
 
             return method;
+        }
+
+        private static string GetComment(INamedTypeSymbol typeSymbol)
+        {
+            string comment = typeSymbol.GetDocumentationCommentXml();
+            if (string.IsNullOrWhiteSpace(comment))
+            {
+                return null;
+            }
+            return XDocument.Parse(comment).Descendants("summary")?.FirstOrDefault()?.Value?.Trim();
         }
 
         private static string GetTemplate(MethodCandidate candidate)
@@ -57,7 +70,7 @@ namespace MMLib.MediatR.Generators.Controllers
         private static string GetMethodType(MethodCandidate candidate)
             => candidate.HttpMethodAttribute.Name.ToString().Replace(Types.Http, string.Empty);
 
-        private void InitParameters(MethodCandidate candidate, string httpMethod)
+        private void InitParameters(MethodCandidate candidate, string httpMethod, INamedTypeSymbol typeSymbol)
         {
             List<ParameterModel> parameters = new();
             var methodFromSource
@@ -82,12 +95,12 @@ namespace MMLib.MediatR.Generators.Controllers
                     AttributeFrom(methodFrom)));
             }
 
-            InitAditionalParams(candidate, parameters);
+            InitAditionalParams(candidate, parameters, typeSymbol);
 
             Parameters.AddRange(parameters);
         }
 
-        private void InitAditionalParams(MethodCandidate candidate, List<ParameterModel> parameters)
+        private void InitAditionalParams(MethodCandidate candidate, List<ParameterModel> parameters, INamedTypeSymbol typeSymbol)
         {
             var additionalParamsAttribute = candidate
                 .TypeDeclaration
@@ -95,7 +108,6 @@ namespace MMLib.MediatR.Generators.Controllers
 
             if (additionalParamsAttribute is not null)
             {
-                var typeSymbol = candidate.SemanticModel.GetDeclaredSymbol(candidate.TypeDeclaration) as INamedTypeSymbol;
                 var properties = typeSymbol.GetProperties();
                 RequestProperties.AddRange(properties.Keys);
 

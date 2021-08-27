@@ -6,12 +6,16 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Projects\GitHub\Burgyn\MMLib.MediatR.Generators\demo\MMLib.MediatR.Generators.Demo.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoBogus.Conventions" Version="2.13.0" />
     <PackageReference Include="Kros.Utils" Version="1.18.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+    <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />-->
   </ItemGroup>
 
   <ItemGroup>
