@@ -10,7 +10,13 @@ namespace MMLib.MediatR.Generators.Demo.Applications.Commands
     {
         [HttpPut("{id:int}", Controller = "People")]
         [AdditionalParameters("id")]
-        public record Command([property: JsonIgnore] int Id, string FirstName, string LastName) : IRequest<Unit>;
+        public record Command() : IRequest<Unit>
+        {
+            [JsonIgnore]
+            public int Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
 
         public class Handler : IRequestHandler<Command, Unit>
         {
