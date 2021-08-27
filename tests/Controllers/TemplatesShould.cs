@@ -42,7 +42,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
             return Verifier.Verify(actual)
                 .UseParameters(type);
         }
-        
+
         [Theory]
         [InlineData("People", "Get", "GetAll", "Get all template.")]
         [InlineData("", "Get", "", "Default Get method body.")]
@@ -57,7 +57,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
 
             actual.Should().Be(template);
         }
-        
+
         [Theory]
         [InlineData("Get")]
         [InlineData("Post")]

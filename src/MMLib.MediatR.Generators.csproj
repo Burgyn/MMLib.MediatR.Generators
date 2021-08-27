@@ -9,12 +9,12 @@
 
   <ItemGroup>
     <None Remove="Controllers\ControllerTemplate.txt" />
-    <None Remove="Controllers\Templates\Attributes.txt" />
-    <None Remove="Controllers\Templates\Body.txt" />
+    <None Remove="Controllers\Templates\ControllerAttributes.txt" />
     <None Remove="Controllers\Templates\HttpDeleteMethodBody.txt" />
     <None Remove="Controllers\Templates\HttpGetMethodBody.txt" />
     <None Remove="Controllers\Templates\HttpPostMethodBody.txt" />
     <None Remove="Controllers\Templates\HttpPutMethodBody.txt" />
+    <None Remove="Controllers\Templates\Method.txt" />
     <None Remove="Controllers\UsingTemplate.txt" />
   </ItemGroup>
 
@@ -23,8 +23,8 @@
     <EmbeddedResource Include="Controllers\Templates\HttpPostMethodBody.txt" />
     <EmbeddedResource Include="Controllers\Templates\HttpPutMethodBody.txt" />
     <EmbeddedResource Include="Controllers\Templates\HttpGetMethodBody.txt" />
-    <EmbeddedResource Include="Controllers\Templates\Attributes.txt" />
-    <EmbeddedResource Include="Controllers\Templates\Body.txt" />
+    <EmbeddedResource Include="Controllers\Templates\ControllerAttributes.txt" />
+    <EmbeddedResource Include="Controllers\Templates\Method.txt" />
     <EmbeddedResource Include="Controllers\Templates\Usings.txt" />
     <EmbeddedResource Include="Controllers\Templates\Controller.txt" />
     <EmbeddedResource Include="Controllers\SourceTypes.cs" />

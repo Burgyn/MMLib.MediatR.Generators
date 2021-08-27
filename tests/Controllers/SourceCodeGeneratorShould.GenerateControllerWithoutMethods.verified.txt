@@ -54,16 +54,15 @@ namespace MMLib.Demo.Controllers
         {
             var ret = new
             {
-            id = await _mediator.Send(command);
-        }
+            id = await _mediator.Send(command)}
 
-        ;
-        string url = actionName != null ? Url.Link(actionName, ret) ?? string.Empty : string.Empty; return 
-        Created(url, ret);
+            ;
+            string url = actionName != null ? Url.Link(actionName, ret) ?? string.Empty : string.Empty;
+            return Created(url, ret);
+        }
     }
-} }
-,
-  Length: 1281,
+},
+  Length: 1288,
   ChecksumAlgorithm: Sha1,
   CanBeEmbedded: true,
   Container: {},
@@ -541,110 +540,98 @@ namespace MMLib.Demo.Controllers
     {
       LineNumber: 34,
       Start: 1108,
-      End: 1117,
-      EndIncludingLineBreak: 1119,
+      End: 1108,
+      EndIncludingLineBreak: 1110,
       Span: {
-        Start: 1108,
-        Length: 9
+        Start: 1108
       },
       SpanIncludingLineBreak: {
         Start: 1108,
-        Length: 11
-      }
-    },
-    {
-      LineNumber: 35,
-      Start: 1119,
-      End: 1119,
-      EndIncludingLineBreak: 1121,
-      Span: {
-        Start: 1119
-      },
-      SpanIncludingLineBreak: {
-        Start: 1119,
         Length: 2
       }
     },
     {
-      LineNumber: 36,
-      Start: 1121,
-      End: 1130,
-      EndIncludingLineBreak: 1132,
+      LineNumber: 35,
+      Start: 1110,
+      End: 1123,
+      EndIncludingLineBreak: 1125,
       Span: {
-        Start: 1121,
-        Length: 9
+        Start: 1110,
+        Length: 13
       },
       SpanIncludingLineBreak: {
-        Start: 1121,
-        Length: 11
+        Start: 1110,
+        Length: 15
+      }
+    },
+    {
+      LineNumber: 36,
+      Start: 1125,
+      End: 1228,
+      EndIncludingLineBreak: 1230,
+      Span: {
+        Start: 1125,
+        Length: 103
+      },
+      SpanIncludingLineBreak: {
+        Start: 1125,
+        Length: 105
       }
     },
     {
       LineNumber: 37,
-      Start: 1132,
-      End: 1239,
-      EndIncludingLineBreak: 1241,
+      Start: 1230,
+      End: 1267,
+      EndIncludingLineBreak: 1269,
       Span: {
-        Start: 1132,
-        Length: 107
+        Start: 1230,
+        Length: 37
       },
       SpanIncludingLineBreak: {
-        Start: 1132,
-        Length: 109
+        Start: 1230,
+        Length: 39
       }
     },
     {
       LineNumber: 38,
-      Start: 1241,
-      End: 1267,
-      EndIncludingLineBreak: 1269,
+      Start: 1269,
+      End: 1278,
+      EndIncludingLineBreak: 1280,
       Span: {
-        Start: 1241,
-        Length: 26
+        Start: 1269,
+        Length: 9
       },
       SpanIncludingLineBreak: {
-        Start: 1241,
-        Length: 28
+        Start: 1269,
+        Length: 11
       }
     },
     {
       LineNumber: 39,
-      Start: 1269,
-      End: 1274,
-      EndIncludingLineBreak: 1276,
+      Start: 1280,
+      End: 1285,
+      EndIncludingLineBreak: 1287,
       Span: {
-        Start: 1269,
+        Start: 1280,
         Length: 5
       },
       SpanIncludingLineBreak: {
-        Start: 1269,
+        Start: 1280,
         Length: 7
       }
     },
     {
       LineNumber: 40,
-      Start: 1276,
-      End: 1279,
-      EndIncludingLineBreak: 1281,
+      Start: 1287,
+      End: 1288,
+      EndIncludingLineBreak: 1288,
       Span: {
-        Start: 1276,
-        Length: 3
+        Start: 1287,
+        Length: 1
       },
       SpanIncludingLineBreak: {
-        Start: 1276,
-        Length: 5
-      }
-    },
-    {
-      LineNumber: 41,
-      Start: 1281,
-      End: 1281,
-      EndIncludingLineBreak: 1281,
-      Span: {
-        Start: 1281
-      },
-      SpanIncludingLineBreak: {
-        Start: 1281
+        Start: 1287,
+        Length: 1
       }
     }
   ]

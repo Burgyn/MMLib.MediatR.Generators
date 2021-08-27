@@ -6,13 +6,13 @@ namespace MMLib.MediatR.Generators.Controllers
 {
     internal class Templates
     {
-        private Dictionary<string, string> _templates = new();
+        private readonly Dictionary<string, string> _templates = new();
 
         public void AddTemplate(TemplateType type, string controllerName, string template)
         {
             _templates[GetName(type, controllerName)] = template;
         }
-        
+
         public void AddMethodBodyTemplate(string controllerName, string httpType, string methodName, string template)
         {
             _templates[GetMethodBodyTemplateName(controllerName, httpType, methodName)] = template;
@@ -26,9 +26,9 @@ namespace MMLib.MediatR.Generators.Controllers
                     : type switch
                     {
                         TemplateType.Controller => EmbeddedResource.GetContent("Controllers.Templates.Controller.txt"),
-                        TemplateType.ControllerAttributes=> EmbeddedResource.GetContent("Controllers.Templates.Attributes.txt"),
+                        TemplateType.ControllerAttributes=> EmbeddedResource.GetContent("Controllers.Templates.ControllerAttributes.txt"),
                         TemplateType.ControllerUsings => EmbeddedResource.GetContent("Controllers.Templates.Usings.txt"),
-                        TemplateType.ControllerBody => EmbeddedResource.GetContent("Controllers.Templates.Body.txt"),
+                        TemplateType.ControllerBody => EmbeddedResource.GetContent("Controllers.Templates.Method.txt"),
                         _ => throw new ArgumentOutOfRangeException(nameof(type), $"Unexpected template type: {type}.")
                     };
 

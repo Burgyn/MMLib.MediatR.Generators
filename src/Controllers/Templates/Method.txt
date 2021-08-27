@@ -5,7 +5,9 @@
 		/// </summary>
 	{{ end }}
 	[Http{{ method.http_method }}("{{- method.template -}}")]
-	//vymysli ako pridavat atributy. Zatial mi napada to, ze clovek si to definuje v aditional files.;
+	{{ for attr in method.attributes-}}
+		[{{ attr }}]
+	{{~ end ~}}
 	public async Task<{{ method.response_type }}> {{ method.name }}(
 	{{- for param in method.parameters -}}
 		{{ param.attribute }} {{ param.type }} {{ param.name }}{{for.last ? "" : ","}}
