@@ -1,0 +1,25 @@
+﻿namespace Testing
+{
+    public class PeopleQueries
+    {    
+        [HttpGet(Controller = "People", From = From.Route)]
+        public record GetById(int Id): IRequest<Person>;
+        
+        [HttpGet(Controller = "People", From = From.Ignore)]
+        public record GetByAll(): IRequest<IEnumerable<Person>>;
+        
+        [HttpGet(Controller = "People", From = From.Query)]
+        public record Search(string SearchText): IRequest<IEnumerable<Person>>;
+        
+        [HttpGet(Controller = "People", From = From.Header)]
+        public record GetByClientId(string ClientId): IRequest<Person>;
+        
+        [HttpGet(Controller = "People", From = From.Form)]
+        public record GetByUserName(string UserName): IRequest<Person>;
+        
+        [HttpPost(Controller = "People", From = From.Services)]
+        public record GetActive(): IRequest<Person>;
+                
+        public record Person(int Id, string Name);
+    }       
+}

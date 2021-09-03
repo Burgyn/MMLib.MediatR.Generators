@@ -35,6 +35,8 @@
     <EmbeddedResource Include="Resources\AssemblyWithMultipleControllers.txt" />
     <EmbeddedResource Include="Resources\AssemblyWithOneController.txt" />
     <EmbeddedResource Include="Resources\AssemblyWithoutMediatR.txt" />
+    <EmbeddedResource Include="Resources\QueriesWithDifferentFromType.txt" />
+    <EmbeddedResource Include="Resources\RequestWithResponseType.txt" />
   </ItemGroup>
 
 </Project>

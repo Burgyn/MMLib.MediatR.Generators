@@ -1,0 +1,23 @@
+﻿namespace Testing
+{
+    public class CreatePerson
+    {
+        /// <summary>
+        /// Testing comment.
+        /// </summary>
+        [HttpPost(Controller = "People", ResponseType = typeof(long))]
+        public record Command(string FirstName, string LastName): IRequest<int>
+        {
+            private void RequestMethodDefinition()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public class Handler : IRequestHandler<Command, int>
+        {
+            public Task<int> Handle(Command request, CancellationToken cancellationToken)
+                => Task.FromResult(new Random().Next());
+        }
+    }        
+}

@@ -22,6 +22,8 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         [InlineData("AssemblyWithoutMediatR")]
         [InlineData("AssemblyWithOneController")]
         [InlineData("AssemblyWithMultipleControllers")]
+        [InlineData("RequestWithResponseType")]
+        [InlineData("QueriesWithDifferentFromType")]
         public Task GeneratorShouldGenerateCorrectClasses(string sourceCodeFile)
         {
             var sourceCode = AssemblyHelper.GetStringFromResourceFileAsync($"{sourceCodeFile}.txt");
