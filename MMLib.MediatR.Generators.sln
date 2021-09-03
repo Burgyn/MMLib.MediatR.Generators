@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators", "src\MMLib.MediatR.Generators.csproj", "{70404BC9-B6F6-4A1B-AB8B-E20C8DAAF12D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators.Tests", "tests\MMLib.MediatR.Generators.Tests.csproj", "{B8EB7817-A537-403C-B0D4-A32244EDD003}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators.Demo", "demo\MMLib.MediatR.Generators.Demo.csproj", "{93A2B7B7-3E8A-4868-84A1-688294E9E811}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.MediatR.Generators.Tests", "tests\MMLib.MediatR.Generators.Tests\MMLib.MediatR.Generators.Tests.csproj", "{D569CD59-3DF6-459B-A8C4-374C18211E41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{70404BC9-B6F6-4A1B-AB8B-E20C8DAAF12D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70404BC9-B6F6-4A1B-AB8B-E20C8DAAF12D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70404BC9-B6F6-4A1B-AB8B-E20C8DAAF12D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8EB7817-A537-403C-B0D4-A32244EDD003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8EB7817-A537-403C-B0D4-A32244EDD003}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8EB7817-A537-403C-B0D4-A32244EDD003}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8EB7817-A537-403C-B0D4-A32244EDD003}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93A2B7B7-3E8A-4868-84A1-688294E9E811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93A2B7B7-3E8A-4868-84A1-688294E9E811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93A2B7B7-3E8A-4868-84A1-688294E9E811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93A2B7B7-3E8A-4868-84A1-688294E9E811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D569CD59-3DF6-459B-A8C4-374C18211E41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D569CD59-3DF6-459B-A8C4-374C18211E41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D569CD59-3DF6-459B-A8C4-374C18211E41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D569CD59-3DF6-459B-A8C4-374C18211E41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
