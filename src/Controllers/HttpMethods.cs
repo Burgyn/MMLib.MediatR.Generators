@@ -10,7 +10,7 @@ namespace MMLib.MediatR.Generators.Controllers
         public const string Put = "Put";
         public const string Delete = "Delete";
 
-        public static ISet<string> Attributes = new HashSet<string>(StringComparer.OrdinalIgnoreCase){
+        public static readonly ISet<string> Attributes = new HashSet<string>(StringComparer.OrdinalIgnoreCase){
             HttpMethod(Get), HttpMethod(Post), HttpMethod(Put), HttpMethod(Delete) };
 
         private static string HttpMethod(string type) => $"Http{type}";

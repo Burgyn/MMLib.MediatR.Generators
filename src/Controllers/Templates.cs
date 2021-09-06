@@ -30,6 +30,7 @@ namespace MMLib.MediatR.Generators.Controllers
                         TemplateType.ControllerUsings => EmbeddedResource.GetContent("Controllers.Templates.Usings.txt"),
                         TemplateType.ControllerBody => EmbeddedResource.GetContent("Controllers.Templates.Method.txt"),
                         TemplateType.MethodAttributes => null,
+                        TemplateType.MethodBody => null,
                         _ => throw new ArgumentOutOfRangeException(nameof(type), $"Unexpected template type: {type}.")
                     };
 

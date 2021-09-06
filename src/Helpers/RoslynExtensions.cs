@@ -25,7 +25,7 @@ namespace MMLib.MediatR.Generators.Helpers
                        .SelectMany(SelectWithAttributes(attributesName))
                        .Any();
 
-        public static IEnumerable<AttributeSyntax> GetAttributes(
+        private static IEnumerable<AttributeSyntax> GetAttributes(
             this TypeDeclarationSyntax typeDeclaration,
             string attributeName)
             => typeDeclaration

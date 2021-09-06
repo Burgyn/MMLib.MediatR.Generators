@@ -11,15 +11,15 @@ namespace MMLib.MediatR.Generators.Controllers
 {
     internal partial record MethodModel
     {
-        private static readonly string _additionalParametersAttributeName = Helper.GetAttributeName<AdditionalParametersAttribute>();
-        private const string _requestMethodDefinitionName = "RequestMethodDefinition";
+        private static readonly string AdditionalParametersAttributeName = Helper.GetAttributeName<AdditionalParametersAttribute>();
+        private const string RequestMethodDefinitionName = "RequestMethodDefinition";
 
         public static MethodModel Build(MethodCandidate candidate, Templates templates, string controllerName)
         {
-            string httpType = GetMethodType(candidate);
-            string name = GetMethodName(candidate);
-            string template = GetTemplate(candidate);
-            INamedTypeSymbol typeSymbol = candidate.SemanticModel.GetDeclaredSymbol(candidate.TypeDeclaration);
+            var httpType = GetMethodType(candidate);
+            var name = GetMethodName(candidate);
+            var template = GetTemplate(candidate);
+            var typeSymbol = candidate.SemanticModel.GetDeclaredSymbol(candidate.TypeDeclaration);
 
             var method = new MethodModel()
             {
@@ -39,7 +39,7 @@ namespace MMLib.MediatR.Generators.Controllers
 
         private static string GetAttributes(Templates templates, string controllerName, TypeDeclarationSyntax typeDeclaration)
         {
-            var requestMethod = typeDeclaration.GetMethodSymbol(_requestMethodDefinitionName);
+            var requestMethod = typeDeclaration.GetMethodSymbol(RequestMethodDefinitionName);
             if (requestMethod is not null)
             {
                 var attributes = requestMethod.AttributeLists.SelectMany(a => a.Attributes);
@@ -52,7 +52,7 @@ namespace MMLib.MediatR.Generators.Controllers
 
         private static string GetComment(INamedTypeSymbol typeSymbol)
         {
-            string comment = typeSymbol.GetDocumentationCommentXml();
+            var comment = typeSymbol.GetDocumentationCommentXml();
             if (string.IsNullOrWhiteSpace(comment))
             {
                 return null;
@@ -65,7 +65,7 @@ namespace MMLib.MediatR.Generators.Controllers
 
         private static string GetMethodName(MethodCandidate candidate)
         {
-            string name = candidate.HttpMethodAttribute
+            var name = candidate.HttpMethodAttribute
                 .GetStringArgument(nameof(HttpGetAttribute.Name));
 
             if (!string.IsNullOrWhiteSpace(name))
@@ -110,25 +110,25 @@ namespace MMLib.MediatR.Generators.Controllers
                     AttributeFrom(methodFrom)));
             }
 
-            InitAditionalParams(candidate, parameters, typeSymbol);
+            InitAdditionalParams(candidate, parameters, typeSymbol);
 
             Parameters.AddRange(parameters);
         }
 
-        private void InitAditionalParams(MethodCandidate candidate, List<ParameterModel> parameters, INamedTypeSymbol typeSymbol)
+        private void InitAdditionalParams(MethodCandidate candidate, List<ParameterModel> parameters, INamedTypeSymbol typeSymbol)
         {
             var additionalParamsAttribute = candidate
                 .TypeDeclaration
-                .GetAttribute(_additionalParametersAttributeName);
+                .GetAttribute(AdditionalParametersAttributeName);
 
             if (additionalParamsAttribute is not null)
             {
                 var properties = typeSymbol.GetProperties();
                 RequestProperties.AddRange(properties.Keys);
 
-                foreach (var arg in additionalParamsAttribute.ArgumentList.Arguments)
+                foreach (var arg in additionalParamsAttribute.ArgumentList?.Arguments)
                 {
-                    string name = (arg.Expression as LiteralExpressionSyntax).Token.ValueText;
+                    var name = (arg.Expression as LiteralExpressionSyntax)?.Token.ValueText;
                     if (properties.ContainsKey(name))
                     {
                         parameters.Add(new ParameterModel(name, properties[name].Name, CanPostInitiateCommand: true));
@@ -143,7 +143,7 @@ namespace MMLib.MediatR.Generators.Controllers
 
         private static string GetResponseType(MethodCandidate candidate, string httpMethod)
         {
-            string type = candidate
+            var type = candidate
                 .HttpMethodAttribute
                 .GetTypeArgument(nameof(HttpMethodAttribute.ResponseType), candidate.SemanticModel)?.ToDisplayString();
 
@@ -164,28 +164,26 @@ namespace MMLib.MediatR.Generators.Controllers
 
         private static string GetResponseTypeForGetMethod(MethodCandidate candidate)
         {
-            string type = string.Empty;
-            var request = candidate.TypeDeclaration.BaseList.Types.AsEnumerable()
-                .FirstOrDefault(p =>
-                    p.Type is GenericNameSyntax r
-                    && r.Identifier.ValueText == Types.Request
-                    && r.TypeArgumentList.Arguments.Count == 1)?.Type as GenericNameSyntax;
+            var type = string.Empty;
 
-            if (request is not null)
+            if (candidate?.TypeDeclaration?.BaseList?.Types.AsEnumerable()
+                .FirstOrDefault(p =>
+                    p.Type is GenericNameSyntax { Identifier: { ValueText: Types.Request } } r && r.TypeArgumentList.Arguments.Count == 1)
+                ?.Type is GenericNameSyntax request)
             {
                 var responseType = request.TypeArgumentList.Arguments.First();
                 if (responseType.Kind() == SyntaxKind.PredefinedType)
                 {
-                    type = (responseType as PredefinedTypeSyntax).Keyword.ValueText;
+                    type = (responseType as PredefinedTypeSyntax)?.Keyword.ValueText;
                 }
                 else
                 {
                     var info = candidate.SemanticModel.GetTypeInfo(request.TypeArgumentList.Arguments.First());
-                    type = info.Type.ToDisplayString();
+                    type = info.Type?.ToDisplayString();
                 }
             }
 
-            type = type.Replace(Types.EnumerableGenericNamespaces, string.Empty);
+            type = type?.Replace(Types.EnumerableGenericNamespaces, string.Empty);
 
             if (type == Types.Unit)
             {

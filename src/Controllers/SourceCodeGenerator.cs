@@ -11,7 +11,7 @@ namespace MMLib.MediatR.Generators.Controllers
     {
         public static SourceText Generate(ControllerModel controller, Templates templates)
         {
-            string output = RenderBody(new
+            var output = RenderBody(new
             {
                 Usings = templates.GetControllerTemplate(TemplateType.ControllerUsings, controller.Name),
                 Attributes = RenderControllerAttributes(controller, templates),
@@ -47,7 +47,7 @@ namespace MMLib.MediatR.Generators.Controllers
         public static string RenderBody(object body, string templateSource)
         {
             var template = Template.Parse(templateSource);
-            TemplateContext context = CreateContext(body);
+            var context = CreateContext(body);
 
             return template.Render(context);
         }

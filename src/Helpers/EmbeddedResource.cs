@@ -7,15 +7,15 @@ namespace MMLib.MediatR.Generators.Helpers
     {
         public static string GetContent(string relativePath)
         {
-            string baseName = Assembly.GetExecutingAssembly().GetName().Name;
+            var assembly = Assembly.GetExecutingAssembly();
+            string baseName = assembly.GetName().Name;
             string resourceName = relativePath
                 .TrimStart('.')
                 .Replace(Path.DirectorySeparatorChar, '.')
                 .Replace(Path.AltDirectorySeparatorChar, '.');
             string fullName = baseName + "." + resourceName;
 
-            using Stream stream = Assembly.GetExecutingAssembly()
-                .GetManifestResourceStream(fullName);
+            using Stream stream = assembly.GetManifestResourceStream(fullName);
 
             if (stream == null)
             {

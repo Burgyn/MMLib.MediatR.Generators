@@ -10,7 +10,7 @@ namespace MMLib.MediatR.Generators.Controllers
     internal partial record ControllerModel
     {
         internal static ControllersModelBuilder Builder(GeneratorExecutionContext context)
-            => new(context.Compilation, context);
+            => new(context);
 
         private static ControllerModel Build(string name,
             IEnumerable<MethodCandidate> methods,
@@ -29,16 +29,14 @@ namespace MMLib.MediatR.Generators.Controllers
 
         internal class ControllersModelBuilder
         {
-            private readonly Compilation _compilation;
             private readonly GeneratorExecutionContext _context;
+            private readonly Compilation _compilation;
             private readonly Dictionary<string, List<MethodCandidate>> _controllers = new(StringComparer.OrdinalIgnoreCase);
 
-            public ControllersModelBuilder(
-                Compilation compilation,
-                GeneratorExecutionContext context)
+            public ControllersModelBuilder(GeneratorExecutionContext context)
             {
-                _compilation = compilation;
                 _context = context;
+                _compilation = context.Compilation;
             }
 
             public void AddCandidate(TypeDeclarationSyntax candidate)
@@ -46,13 +44,21 @@ namespace MMLib.MediatR.Generators.Controllers
                 var attribute = candidate.GetAttribute(HttpMethods.Attributes);
                 var semanticModel = _compilation.GetSemanticModel(candidate.SyntaxTree);
                 var controllerName = attribute
-                    .GetStringArgument(nameof(HttpMethodAttribute.Controller))
-                    .CheckControllerName();
+                    .GetStringArgument(nameof(HttpMethodAttribute.Controller));
+
+                if (string.IsNullOrWhiteSpace(controllerName))
+                {
+                    _context.ReportMissingArgument(attribute, nameof(HttpMethodAttribute.Controller));
+                    return;
+                }
+
+                controllerName = controllerName.CheckControllerName();
 
                 if (!_controllers.ContainsKey(controllerName))
                 {
                     _controllers.Add(controllerName, new List<MethodCandidate>());
                 }
+
                 var requestType = semanticModel.GetDeclaredSymbol(candidate);
                 _controllers[controllerName].Add(new(attribute, semanticModel, candidate, requestType.ToDisplayString()));
             }

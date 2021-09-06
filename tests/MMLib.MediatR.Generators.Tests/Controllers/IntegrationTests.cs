@@ -27,21 +27,28 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         public Task GeneratorShouldGenerateCorrectClasses(string sourceCodeFile)
         {
             var sourceCode = AssemblyHelper.GetStringFromResourceFileAsync($"{sourceCodeFile}.txt");
-            var result = RunGenerator(sourceCode);
-            
+            var result = RunGenerator(sourceCode).Results[0].GeneratedSources;
+
             return Verifier.Verify(result)
                 .UseParameters(sourceCodeFile);
         }
+        
+        [Fact]
+        public Task GeneratorShouldReportMissingControllerName()
+        {
+            var sourceCode = AssemblyHelper.GetStringFromResourceFileAsync($"WithoutControllerName.txt");
+            var result = RunGenerator(sourceCode);
 
-        private static ImmutableArray<GeneratedSourceResult> RunGenerator(string sourceCode)
+            return Verifier.Verify(result);
+        }
+
+        private static GeneratorDriverRunResult RunGenerator(string sourceCode)
         {
             var compilation = CreateCompilation(sourceCode);
             GeneratorDriver driver = CSharpGeneratorDriver.Create(new ControllersGenerator());
             driver = driver.RunGeneratorsAndUpdateCompilation(compilation, out var _, out var _);
 
-            var runResult = driver.GetRunResult();
-
-            return runResult.Results[0].GeneratedSources;
+            return driver.GetRunResult();
         }
     }
 }

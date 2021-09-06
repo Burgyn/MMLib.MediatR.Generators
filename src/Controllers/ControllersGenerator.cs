@@ -1,5 +1,4 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using MMLib.MediatR.Generators.Helpers;
 using System;
@@ -25,7 +24,7 @@ namespace MMLib.MediatR.Generators.Controllers
             if (context.SyntaxReceiver is ControllerReceiver actorSyntaxReciver)
             {
                 var builder = ControllerModel.Builder(context);
-                foreach (TypeDeclarationSyntax candidate in actorSyntaxReciver.Candidates)
+                foreach (var candidate in actorSyntaxReciver.Candidates)
                 {
                     builder.AddCandidate(candidate);
                 }

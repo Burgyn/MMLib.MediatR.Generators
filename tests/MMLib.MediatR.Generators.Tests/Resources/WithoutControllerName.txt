@@ -1,0 +1,19 @@
+﻿namespace Testing
+{
+    public class CreatePerson
+    {
+        /// <summary>
+        /// Testing comment.
+        /// </summary>
+        [HttpPost()]
+        public record Command(string FirstName, string LastName): IRequest<int>
+        {
+        }
+
+        public class Handler : IRequestHandler<Command, int>
+        {
+            public Task<int> Handle(Command request, CancellationToken cancellationToken)
+                => Task.FromResult(new Random().Next());
+        }
+    }        
+}
