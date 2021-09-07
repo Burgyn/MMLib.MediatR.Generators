@@ -23,6 +23,5 @@ namespace MMLib.MediatR.Generators.Controllers
                     attribute.GetLocation(),
                     argumentName,
                     (attribute.Name as IdentifierNameSyntax)?.Identifier.Text));
-
     }
 }
