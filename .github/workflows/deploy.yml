@@ -22,7 +22,7 @@ jobs:
     - name: Generate nuget package
       run: dotnet pack  ./src/MMLib.MediatR.Generators.csproj --configuration Release -o nupkg
     - name: Publish nuget package
-      run: dotnet nuget push "*.nupkg" -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+      run: dotnet nuget push "**/*.nupkg" -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
       env:
         nuget_api_key: ${{ secrets.NUGET_API_KEY }}
       working-directory: ./nupkg
