@@ -24,6 +24,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         [InlineData("AssemblyWithMultipleControllers")]
         [InlineData("RequestWithResponseType")]
         [InlineData("QueriesWithDifferentFromType")]
+        [InlineData("ComplexTest")]
         public Task GeneratorShouldGenerateCorrectClasses(string sourceCodeFile)
         {
             var sourceCode = AssemblyHelper.GetStringFromResourceFileAsync($"{sourceCodeFile}.txt");
@@ -32,7 +33,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
             return Verifier.Verify(result)
                 .UseParameters(sourceCodeFile);
         }
-        
+
         [Fact]
         public Task GeneratorShouldReportMissingControllerName()
         {

@@ -7,8 +7,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Projects\GitHub\Burgyn\MMLib.MediatR.Generators\demo\MMLib.MediatR.Generators.Demo.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Templates\ControllerAttributes.txt" />
+    <None Remove="Templates\ControllerUsings.txt" />
+    <None Remove="Templates\CustomUsing.txt" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoBogus.Conventions" Version="2.13.0" />
@@ -25,6 +31,11 @@
 
   <Import Project="..\src\MMLib.MediatR.Generators.props" />
   <ItemGroup>
+    <AdditionalFiles Include="Templates\ControllerAttributes.txt" TemplateType="ControllerAttributes" />
+    <AdditionalFiles Include="Templates\ControllerUsings.txt" TemplateType="ControllerUsings" ControllerName="ProductsController" />
     <AdditionalFiles Include="Templates\MethodAttributes.txt" TemplateType="MethodAttributes" ControllerName="ProductsController" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\ControllerAttributes.txt" />
   </ItemGroup>
 </Project>

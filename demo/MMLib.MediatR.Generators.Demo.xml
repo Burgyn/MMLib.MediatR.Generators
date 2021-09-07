@@ -119,7 +119,7 @@
         </member>
         <member name="P:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.Name">
             <summary>
-            Http action name.
+            Generated method name.
             </summary>
         </member>
         <member name="P:MMLib.MediatR.Generators.Controllers.HttpMethodAttribute.Template">

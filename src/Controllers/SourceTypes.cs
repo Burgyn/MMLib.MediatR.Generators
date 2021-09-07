@@ -69,7 +69,7 @@ namespace MMLib.MediatR.Generators.Controllers
         public string Controller { get; init; }
 
         /// <summary>
-        /// Http action name.
+        /// Generated method name.
         /// </summary>
         public string Name { get; set; }
 

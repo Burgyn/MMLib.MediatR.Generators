@@ -1,0 +1,27 @@
+name: Publish package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core if needed
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 5.0.101
+    - name: Build
+      run: dotnet build ./src/MMLib.MediatR.Generators.csproj --configuration Release
+    - name: Test
+      run: dotnet test ./tests/MMLib.MediatR.Generators.Tests/MMLib.MediatR.Generators.Tests.csproj
+    - name: Generate nuget package
+      run: dotnet pack  ./src/MMLib.MediatR.Generators.csproj --configuration Release -o nupkg
+    - name: Publish nuget package
+      run: find . -name *.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+      env:
+        nuget_api_key: ${{ secrets.NUGET_API_KEY }}
+      working-directory: ./nupkg

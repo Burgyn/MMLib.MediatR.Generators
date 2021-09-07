@@ -19,5 +19,5 @@
             public Task<int> Handle(Command request, CancellationToken cancellationToken)
                 => Task.FromResult(new Random().Next());
         }
-    }        
+    }
 }

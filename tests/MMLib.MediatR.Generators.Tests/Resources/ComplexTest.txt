@@ -1,0 +1,35 @@
+﻿namespace Testing
+{
+    /// <summary>
+    /// Testing comment.
+    /// </summary>
+    [HttpPost(Controller = "People")]
+    public record CreatePersonCommand(string FirstName, string LastName): IRequest<int>
+    {
+        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [Microsoft.AspNetCore.Mvc.ValidateAntiForgeryToken]
+        private void RequestMethodDefinition()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    [HttpDelete("{id:int}", Controller = "People")]
+    public class DeletePersonCommand : DeleteCommandBase<Person>{}
+
+    /// <summary>
+    /// Command for update person.
+    /// </summary>
+    [HttpPut("{id:int}", Controller = "People")]
+    [AdditionalParameters("id")]
+    public record UpdatePersonCommand([property:JsonIgnore]int Id, string FirstName, string LastName) : IRequest<Unit>;
+
+    [HttpGet("all", Controller = "People", From = From.Ignore)]
+    public record GetAllPeopleQuery() : IRequest<IEnumerable<Person>>;
+
+    [HttpGet(Controller = "People", Name = "GetPeople", From = From.Query)]
+    public record GetPeopleQuery(int Skip, int Take) : IRequest<IEnumerable<Person>>;
+
+    [HttpGet("{id}", Controller = "People", Name = "GetById")]
+    public record Query(int Id) : IRequest<Response>;
+}
