@@ -36,24 +36,5 @@ namespace MMLib.MediatR.Generators.Demo.Controllers
             })
             .ToArray();
         }
-
-        [HttpGet("getAll")]
-        public ActionResult GetAll([FromQuery] QueryPager pager)
-        {
-            return Ok();
-        }
-
-        [HttpDelete("{Id:int}")]
-        public ActionResult Delete([FromRoute] DeleteCommand deleteCommand)
-        {
-            return NoContent();
-        }
-    }
-
-    public record QueryPager(int Skip, int Take);
-
-    public class DeleteCommand
-    {
-        public int Id { get; set; }
     }
 }

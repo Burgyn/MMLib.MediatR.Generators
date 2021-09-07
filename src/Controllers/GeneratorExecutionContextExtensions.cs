@@ -12,7 +12,7 @@ namespace MMLib.MediatR.Generators.Controllers
             category: "MMLib.MediatR.Generators",
             DiagnosticSeverity.Error,
             isEnabledByDefault: true);
-        
+
         public static void ReportMissingArgument(
             this GeneratorExecutionContext context,
             AttributeSyntax attribute,
