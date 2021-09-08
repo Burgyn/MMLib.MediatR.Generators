@@ -258,21 +258,21 @@ Your template must be added to `csproj` as an additional file with the `Template
 
 ```xml
 <ItemGroup>
-  <AdditionalFiles Include="Templates\Attributes.txt" TemplateType="ControllerUsings" />
+  <AdditionalFiles Include="Templates\Attributes.txt" MMLib_TemplateType="ControllerUsings" />
 </ItemGroup>
 ```
 
-This template is used for all generated controllers. To define a custom usage for a particular controller, you must set the controller name using the `ControllerName` property.
+This template is used for all generated controllers. To define a custom usage for a particular controller, you must set the controller name using the `MMLib_ControllerName` property.
 
 ```xml
 <ItemGroup>
-  <AdditionalFiles Include="Templates\Attributes.txt" TemplateType="ControllerUsings" ControllerName="ProductsController" />
+  <AdditionalFiles Include="Templates\Attributes.txt" MMLib_TemplateType="ControllerUsings" MMLib_ControllerName="ProductsController" />
 </ItemGroup>
 ```
 
 ### Controller attributes
 
-`TemplateType` property must be set to `ControllerAttributes`.
+`MMLib_TemplateType` property must be set to `ControllerAttributes`.
 
 ### Http method body
 
@@ -286,13 +286,13 @@ You can override body of http method. Eg.: `HttpGetMethodBody.txt`
 
 ```xml
 <ItemGroup>
-  <AdditionalFiles Include="Templates\HttpGetMethodBody.txt" TemplateType="MethodBody" MethodType="Get" />
+  <AdditionalFiles Include="Templates\HttpGetMethodBody.txt" MMLib_TemplateType="MethodBody" MMLib_MethodType="Get" />
 </ItemGroup>
 ```
 
 ### Method attributes
 
-If you want to override the attributes above all generated methods, you can also do so via a template. `TemplateType` property must be set to `MethodAttributes`.
+If you want to override the attributes above all generated methods, you can also do so via a template. `MMLib_TemplateType` property must be set to `MethodAttributes`.
 
 But if you want to define specific attributes for a particular method, you can use a hack to add the `RequestMethodDefinition` method to your command / query. All attributes defined above this method will be used when generating the http method.
 
@@ -311,4 +311,4 @@ public record CreatePersonCommand(string FirstName, string LastName): IRequest<i
 
 ### Whole controller template
 
-You can override whole controller template. `TemplateType` property must be set to `Controller`.
+You can override whole controller template. `MMLib_TemplateType` property must be set to `Controller`.

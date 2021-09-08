@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MMLib.MediatR.Generators.props" />
+    <None Include="MMLib.MediatR.Generators.props" Pack="true" PackagePath="build" Visible="false" />
   </ItemGroup>
 
   <PropertyGroup>

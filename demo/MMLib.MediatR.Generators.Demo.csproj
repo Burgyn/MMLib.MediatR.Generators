@@ -31,9 +31,9 @@
 
   <Import Project="..\src\MMLib.MediatR.Generators.props" />
   <ItemGroup>
-    <AdditionalFiles Include="Templates\ControllerAttributes.txt" TemplateType="ControllerAttributes" />
-    <AdditionalFiles Include="Templates\ControllerUsings.txt" TemplateType="ControllerUsings" ControllerName="ProductsController" />
-    <AdditionalFiles Include="Templates\MethodAttributes.txt" TemplateType="MethodAttributes" ControllerName="ProductsController" />
+    <AdditionalFiles Include="Templates\ControllerAttributes.txt" MMLib_TemplateType="ControllerAttributes" MMLib_ControllerName="ProductsController" />
+    <!--<AdditionalFiles Include="Templates\ControllerUsings.txt" MMLib_TemplateType="ControllerUsings" MMLib_ControllerName="ProductsController" />
+    <AdditionalFiles Include="Templates\MethodAttributes.txt" MMLib_TemplateType="MethodAttributes" MMLib_ControllerName="ProductsController" />-->
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Templates\ControllerAttributes.txt" />

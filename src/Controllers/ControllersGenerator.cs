@@ -46,7 +46,7 @@ namespace MMLib.MediatR.Generators.Controllers
                 if (Path.GetExtension(file.Path).Equals(".txt", StringComparison.OrdinalIgnoreCase))
                 {
                     var options = context.AnalyzerConfigOptions.GetOptions(file);
-                    if (options.TryGetValue("build_metadata.additionalfiles.TemplateType", out var type) &&
+                    if (options.TryGetValue("build_metadata.additionalfiles.MMLib_TemplateType", out var type) &&
                         Enum.TryParse(type, ignoreCase: true, out TemplateType templateType))
                     {
                         var controllerName = TryGetValue(options, "ControllerName");
@@ -70,6 +70,6 @@ namespace MMLib.MediatR.Generators.Controllers
         }
 
         private static string TryGetValue(AnalyzerConfigOptions options, string type)
-            => options.TryGetValue($"build_metadata.additionalfiles.{type}", out var value) ? value : string.Empty;
+            => options.TryGetValue($"build_metadata.additionalfiles.MMLib_{type}", out var value) ? value : string.Empty;
     }
 }
