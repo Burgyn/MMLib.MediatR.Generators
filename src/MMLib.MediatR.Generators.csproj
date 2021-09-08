@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <IsRoslynComponent>true</IsRoslynComponent>
     <BuildOutputTargetFolder>analyzers</BuildOutputTargetFolder>
     <Authors>Milan Martiniak</Authors>
@@ -15,6 +15,9 @@
     <PackageReleaseNotes />
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>@MMLib</Copyright>
+    <SourceGenerator_EnableLogging>True</SourceGenerator_EnableLogging>
+    <SourceGenerator_EnableDebug>False</SourceGenerator_EnableDebug>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <ItemGroup>
@@ -50,6 +53,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageReference Include="Scriban" Version="4.0.1" IncludeAssets="Build" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MMLib.MediatR.Generators.props" />
   </ItemGroup>
 
   <PropertyGroup>
