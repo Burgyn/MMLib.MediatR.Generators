@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <IsRoslynComponent>true</IsRoslynComponent>
     <BuildOutputTargetFolder>analyzers</BuildOutputTargetFolder>
     <Authors>Milan Martiniak</Authors>
@@ -15,9 +15,6 @@
     <PackageReleaseNotes />
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>@MMLib</Copyright>
-    <SourceGenerator_EnableLogging>True</SourceGenerator_EnableLogging>
-    <SourceGenerator_EnableDebug>False</SourceGenerator_EnableDebug>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <ItemGroup>
