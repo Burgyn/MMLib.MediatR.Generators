@@ -5,6 +5,16 @@
     <Version>1.0.0</Version>
     <IsRoslynComponent>true</IsRoslynComponent>
     <BuildOutputTargetFolder>analyzers</BuildOutputTargetFolder>
+    <Authors>Milan Martiniak</Authors>
+    <Company>MMLib</Company>
+    <Description>Source code generator for generating Controller based on MediatR requests.</Description>
+    <PackageProjectUrl>https://github.com/Burgyn/MMLib.MediatR.Generators</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Burgyn/MMLib.MediatR.Generators</RepositoryUrl>
+    <PackageTags>MediatR;generator;helper;asp.net;net.core</PackageTags>
+    <PackageReleaseNotes />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>@MMLib</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +38,10 @@
     <EmbeddedResource Include="Controllers\Templates\Usings.txt" />
     <EmbeddedResource Include="Controllers\Templates\Controller.txt" />
     <EmbeddedResource Include="Controllers\SourceTypes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
