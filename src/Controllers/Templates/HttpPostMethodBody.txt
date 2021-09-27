@@ -1,3 +1,4 @@
 ﻿{
+    {{ request_type | post_initiate parameters request_properties }}
     return await SendCreateCommand({{ parameters | get_parameter request_type }}, nameof({{ name }}));
 }
