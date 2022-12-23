@@ -11,7 +11,7 @@
 {{ end }}
 public async Task<{{ method.response_type }}> {{ method.name }}(
 {{- for param in method.parameters -}}
-	{{ param.attribute }} {{ param.type }} {{ param.name }}
+	{{ param.attribute }} {{ param.type }} {{ param.name }},
 {{~ end ~}} CancellationToken cancellationToken)
 {{ controller.name | method_body method templates }}
 {{ end }}
