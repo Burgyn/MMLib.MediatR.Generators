@@ -1,4 +1,4 @@
 ﻿{
-    await _mediator.Send({{ parameters | get_parameter request_type }});
-	return NoContent();	
+    await _mediator.Send({{ parameters | get_parameter request_type }}, cancellationToken);
+	return NoContent();
 }
