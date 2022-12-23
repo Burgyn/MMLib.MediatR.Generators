@@ -86,4 +86,26 @@
 
         public record Response(int Id, string FirstName, string LastName);
     }
+    
+    public class PatchPerson
+    {
+        /// <summary>
+        /// Command for patch person.
+        /// </summary>
+        [HttpPatch("{id:int}", Controller = "People")]
+        [AdditionalParameters("id")]
+        public record Command() : IRequest<Unit>
+        {
+            [JsonIgnore]
+            public int Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
+
+        public class Handler : IRequestHandler<Command, Unit>
+        {
+            public Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+                => Unit.Task;
+        }
+    }
 }

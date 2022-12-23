@@ -66,6 +66,7 @@ namespace MMLib.MediatR.Generators.Tests.Controllers
         [InlineData("Post")]
         [InlineData("Put")]
         [InlineData("Delete")]
+        [InlineData("Patch")]
         public Task ShouldGetDefaultMethodBodyTemplateIfDoesNotExist(string httpType)
         {
             var templates = new Templates();
