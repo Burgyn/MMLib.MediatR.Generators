@@ -5,34 +5,33 @@
 //------------------------------------------------------------------------------
 {{ usings }}
 
-namespace {{ controller.namespace }}
+namespace {{ controller.namespace | string.rstrip -}}
 {
-	{{ attributes }}
+	{{~ attributes }}
 	public partial class {{ controller.name }} : ControllerBase
 	{
 		private IMediator _mediator;
 
 		/// <summary>
-		/// Ctor.
+		/// Constructor.
 		/// </summary>
 		/// <param name="mediator">Mediator.</param>
 		public {{ controller.name }}(IMediator mediator)
-		{
-			_mediator = mediator;
-		}
+			=>_mediator = mediator;
 
-		{{ body }}
+		{{~ body ~}}
 		
-        private async Task<CreatedResult> SendCreateCommand<TResponse>(
-            IRequest<TResponse> command,
-            string actionName = null)
-        {
-            var ret = new { id = await _mediator.Send(command) };
-            string url = actionName != null
-                ? Url.Link(actionName, ret) ?? string.Empty
-                : string.Empty;
+		private async Task<CreatedResult> SendCreateCommand<TResponse>(
+			IRequest<TResponse> command,
+			CancellationToken cancellationToken,
+			string actionName = null)
+		{
+			var ret = new { id = await _mediator.Send(command) };
+			string url = actionName != null
+				? Url.Link(actionName, ret) ?? string.Empty
+				: string.Empty;
 
-            return Created(url, ret);
-        }
+			return Created(url, ret);
+		}
 	}
 }

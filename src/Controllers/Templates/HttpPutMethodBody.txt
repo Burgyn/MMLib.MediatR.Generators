@@ -1,5 +1,5 @@
 ﻿{
     {{ request_type | post_initiate parameters request_properties }}
-    await _mediator.Send({{ parameters | get_parameter request_type }});
+    await _mediator.Send({{ parameters | get_parameter request_type }}, cancellationToken);
     return Ok();
 }
