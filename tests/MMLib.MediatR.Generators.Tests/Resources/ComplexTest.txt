@@ -32,4 +32,11 @@
 
     [HttpGet("{id}", Controller = "People", Name = "GetById")]
     public record Query(int Id) : IRequest<Response>;
+
+    /// <summary>
+    /// Command for patch person.
+    /// </summary>
+    [HttpPut("{id:int}", Controller = "People")]
+    [AdditionalParameters("id")]
+    public record PatchPerson([property:JsonIgnore]int Id, string FirstName, string LastName) : IRequest<Unit>;
 }
